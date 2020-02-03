@@ -1,0 +1,27 @@
+{% extends 'base/base_out.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="content first-content">
+  <div class="container-fluid">
+      <div class="col-md-9 bottom">
+          <h2>Sign up</h2>
+          <form method="post">
+            {% csrf_token %}
+              {% for field in form %}
+              <div class="form-group" >
+                {{field.errors}}
+                {{field.label_tag}}
+                {% render_field field class="form-control" %}
+              </div>
+              {% endfor %}
+              <button class="btn btn-primary" type="submit">Sign Up</button>
+          </form>
+
+      </div>
+  </div>
+</div>
+
+{% endblock %}

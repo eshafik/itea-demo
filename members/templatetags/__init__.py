@@ -1,0 +1,1 @@
+from members.templatetags.grouptags import has_group

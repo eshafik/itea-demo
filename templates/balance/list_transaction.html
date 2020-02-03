@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load grouptags %}
+{% load static %}
+
+
+{% block title %}Transaction List{% endblock %}
+
+{% block content %}
+<div class="content fourth-content">
+    <div class="container-fluid">
+        <div class="col-md-12 bottom">
+            <div class="left-content">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> <h2 id="head-text">Transaction Lists:</h2>
+                </div>
+                <div class="card-block">
+                    <table class="table table-bordered table-striped table-sm text-center">
+                        <thead>
+                        <tr>
+                            <th> <h3 class="text-center" id="text"> Name</h3> </th>
+                            <th> <h3 class="text-center" id="text"> Amount</h3> </th>
+                            <th> <h3 class="text-center" id="text"> Transaction Date</h3> </th>
+                            <th> <h3 class="text-center" id="text"> Transaction type</h3> </th>
+                            {% if request.user|has_group:"Finance" %}
+                            <th> <h3 class="text-center" id="text"> Edit</h3> </th>
+                            <th> <h3 class="text-center" id="text"> Delete</h3> </th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for transaction in transactions %}
+                        <tr>
+                            <td><a href="#" class="test-success"><span class="btn text-dark" id="table-text">{{ transaction.user.name }}</span></a></td>
+                            <td><a href="#" class="test-success"><span class="btn text-dark" id="table-text">{{ transaction.amount }}</span></a></td>
+                            <td><a href="#" class="test-success"><span class="btn text-dark" id="table-text">{{ transaction.transaction_date }}</span></a></td>
+                            <td><a href="#" class="test-success"><span class="btn text-dark" id="table-text">{{ transaction.transaction_type }}</span></a></td>
+                            {% if request.user|has_group:"Finance" %}
+                            <td><a href="{% url 'balance:transaction-edit' transaction.id %}" class="test-success"><span class="btn text-dark" id="table-text">Click Edit</span></a></td>
+                            <td><a href="{% url 'balance:transaction-delete' transaction.id %}" class="test-success"><span class="btn text-dark" id="table-text">Click Delete</span></a></td>
+                            {% endif %}
+
+                        </tr>
+                        {% endfor %}
+                        {% if total %}
+                        <tr>
+                            <td><a href="#" class="test-success"><span class="btn text-dark" id="table-text">Total =</span></a></td>
+                            <td><a href="#" class="test-success"><span class="btn text-dark" id="table-text">{{ total }}</span></a></td>
+                        </tr>
+                        {% endif %}
+                        </tbody>
+
+                    </table>
+                    {% if request.user|has_group:"Finance" and download %}
+                        <a href="{% url 'balance:transaction-download' %}" id="head-text">Download Query File</a>
+                    {% endif %}
+                    {% include "pagination/pagination.html" with page=transactions %}
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

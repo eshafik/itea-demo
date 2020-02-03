@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Delete Notice{% endblock %}
+
+{% block content %}
+<div class="content first-content">
+  <div class="container-fluid">
+      <div class="col-md-9 bottom">
+          <h2>Delete Notice</h2>
+          <form method="post">
+            {% csrf_token %}
+              {% for field in form %}
+              <div class="form-group" >
+                {{field.errors}}
+                {{field.label_tag}}
+                {% render_field field class="form-control" %}
+              </div>
+              {% endfor %}
+              <button class="btn btn-primary" type="submit">Delete</button>
+          </form>
+
+      </div>
+  </div>
+</div>
+
+{% endblock %}

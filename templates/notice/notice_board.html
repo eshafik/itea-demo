@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% load grouptags %}
+
+{% block title %}Notice Board{% endblock %}
+
+{% block content %}
+<div class="content first-content ">
+  <div class="container-fluid">
+      <div class="col-md-12 bottom">
+      {% if notice %}
+         <h2>{{ notice.notice_title }}</h2>
+          <p>Published By- {{ notice.author.name }}, Published Date: {{ notice.published_date }}</p>
+          <p><em>{{ notice.notice_body }}</em></p>
+          {% if request.user.id == notice.author.id %}
+          <div class="fb-btn"><a href="{% url 'notice:notice-edit' notice.id %}">Edit</a></div>
+          <div class="fb-btn"><a href="{% url 'notice:notice-delete' notice.id %}">Delete</a></div>
+          {% endif %}
+          <br><br>
+          <div class="fb-btn"><a href="{% url 'notice:notice-list' %}">See All Notice</a></div>
+       {% else %}
+            <h2>No notice published yet...!</h2>
+      {% endif %}
+      {% if request.user|has_group:"Executive"%}
+      <div class="fb-btn" id="bottom"><a href="{% url 'notice:notice-create'%}">Publish New Notice</a></div>
+      {% endif %}
+      </div>
+  </div>
+</div>{% endblock %}

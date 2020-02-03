@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% load grouptags %}
+
+{% block title %}Transaction Details{% endblock %}
+
+{% block content %}
+<div class="content first-content">
+  <div class="container-fluid">
+      <div class="col-md-12 bottom">
+          <h2>Transaction Details </h2>
+          <p><em>Transaction To: </em>{{ transaction.user.name }}</p>
+          <p><em>Transaction ID: </em> {{ transaction.transaction_guid}}</p>
+          <p><em>Transaction Amount: </em> {{ transaction.amount}}</p>
+          <p><em>Transaction Date: </em> {{ transaction.transaction_date}}</p>
+          <p><em>Transaction Type: </em> {{ transaction.transaction_type}}</p>
+          <p><em>Transaction Details: </em> {{ transaction.transaction_details }}</p>
+          <p><em>Transaction Created at: </em> {{ transaction.created_at}}</p>
+          <p><em>Transaction Updated at: </em> {{ transaction.updated_at}}</p>
+          {% if request.user|has_group:"Finance"%}
+          <div class="fb-btn"><a href="{% url 'balance:transaction-edit' transaction.id %}">Edit</a></div>
+          <div class="fb-btn"><a href="{% url 'balance:transaction-delete' transaction.id %}">Delete</a></div>
+          <div class="fb-btn"><a href="{% url 'balance:transaction-create'%}">Create Another</a></div>
+          {% endif %}
+
+      </div>
+  </div>
+</div>{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base/base_date.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Date Picker{% endblock %}
+
+{% block content %}
+<div class="content fifth-content">
+    <div class="container-fluid">
+        <div class="row bottom top-margin">
+            <div class="col-md-4 col-md-offset-5"></div>
+
+          <form method="post">
+          <h2 id="head-text">{{ name }} Query By Date</h2>
+            {% csrf_token %}
+              {% for field in form %}
+              <div class="form-group" >
+                {{field.errors}}
+                {{field.label_tag}}
+                {% render_field field class="form-control" %}
+              </div>
+              {% endfor %}
+              <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+      </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base/base_out.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="content first-content">
+  <div class="container-fluid">
+      <div class="col-md-9" id="bottom">
+          <h2>Login</h2>
+          <form method="post">
+            {% csrf_token %}
+              {% for field in form %}
+              <div class="form-group" >
+                {{field.errors}}
+                {{field.label_tag}}
+                {% render_field field class="form-control" %}
+              </div>
+              {% endfor %}
+              <button class="btn btn-primary" type="submit">Login</button>
+          </form>
+          <br>
+        <a href="{% url 'password_reset' %}"><button class="btn btn-warning" type="text">Forgot Password?</button></a>
+
+      </div>
+  </div>
+</div>
+
+{% endblock %}

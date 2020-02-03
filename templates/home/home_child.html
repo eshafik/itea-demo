@@ -1,0 +1,16 @@
+{% load static %}
+<div class="content first-content">
+  <div class="container-fluid">
+      <div class="col-md-3">
+          <div class="author-image"><img src="{% static 'img/author_image.png' %}" alt=""></div>
+      </div>
+      <div class="col-md-9">
+          <h2>FINANCIAL MANAGEMENT SOFTWARE FOR ITEA</h2>
+          <p><em>This is mainly a demo financial management software for ITEA.</em></p>
+          <div class="fb-btn"><a href="https://www.facebook.com/shafik.te/" target="_blank">My FB Account</a></div>
+          {% if user.is_authenticated %}
+          <div class="fb-btn"><a href="{% url 'notice:notice-board' %}" target="_blank">Go Dashboard</a></div>
+          {% endif %}
+      </div>
+  </div>
+</div>

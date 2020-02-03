@@ -1,0 +1,134 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load grouptags %}
+
+{% block title %}Balance Dashboard{% endblock %}
+
+{% block content %}
+<div class="content fifth-content">
+    <div class="container-fluid">
+        <div class="col-md-12 bottom">
+            <div class="row top-margin">
+                <div class="col-md-4">
+                  <fieldset>
+                      <h2 id="head-text">Current Month Transaction</h2>
+                      <a href="{% url 'balance:transaction-list'%}?p=me_current">
+                          <button type="link" id="form-submit " class="btn top-spacing ">My Transaction</button>
+                      </a>
+                      <a href="{% url 'balance:transaction-list'%}?p=all_current">
+                          <button type="link" id="form-submit" class="btn top-spacing">All Members' </button>
+                      </a>
+                      <a href="{% url 'balance:exp-transaction-list'%}?p=current">
+                          <button type="link" id="form-submit" class="btn top-spacing">Expense</button>
+                      </a>
+                      <a href="{% url 'balance:incm-transaction-list'%}?p=current">
+                          <button type="link" id="form-submit" class="btn top-spacing">Income</button>
+                      </a>
+                  </fieldset>
+                </div>
+                <div class="col-md-4">
+                  <fieldset>
+                      <h2 id="head-text">All Transaction</h2>
+                      <a href="{% url 'balance:transaction-list'%}?p=me_all">
+                          <button type="link" id="form-submit" class="btn top-spacing">My Transactions</button>
+                      </a>
+                      <a href="{% url 'balance:transaction-my-due'%}?p=me_all">
+                          <button type="link" id="form-submit" class="btn top-spacing">My Due Months</button>
+                      </a>
+
+                      <a href="{% url 'balance:transaction-list' %}">
+                          <button type="link" id="form-submit" class="btn top-spacing">All Members'</button>
+                      </a>
+                      <a href="{% url 'balance:exp-transaction-list'%}">
+                          <button type="link" id="form-submit" class="btn top-spacing">Expense</button>
+                      </a>
+                      <a href="{% url 'balance:incm-transaction-list' %}">
+                          <button type="link" id="form-submit" class="btn top-spacing">Income</button>
+                      </a>
+                  </fieldset>
+                </div>
+                <div class="col-md-4">
+                  <fieldset>
+                      <h2 id="head-text">Query By Date</h2>
+                      <a href="{% url 'balance:transaction-query' %}">
+                          <button type="link" id="form-submit" class="btn top-spacing">Transaction</button>
+                      </a>
+                      <a href="{% url 'balance:exp-transaction-query' %}">
+                          <button type="link" id="form-submit" class="btn top-spacing">Expense</button>
+                      </a>
+                      <a href="{% url 'balance:incm-transaction-query' %}">
+                          <button type="link" id="form-submit" class="btn top-spacing">Income</button>
+                      </a>
+                  </fieldset>
+                </div>
+            </div>
+        <!-- Only For Finance Executive-->
+        {% if request.user|has_group:"Finance"%}
+            <div class="row top-margin" id="bottom">
+                <div class="col-md-4">
+                  <fieldset>
+                      <h2 id="head-text">Create Member's Transaction</h2>
+                      <a href="{% url 'balance:transaction-create'%}">
+                          <button type="link" id="form-submit " class="btn top-spacing ">Click Here</button>
+                      </a>
+                  </fieldset>
+                </div>
+                <div class="col-md-4">
+                  <fieldset>
+                      <h2 id="head-text">Create Expense Transaction</h2>
+                      <a href="{% url 'balance:exp-transaction-create'%}?p=me_all">
+                          <button type="link" id="form-submit" class="btn top-spacing">Click Here</button>
+                      </a>
+                  </fieldset>
+                </div>
+                <div class="col-md-4">
+                  <fieldset>
+                      <h2 id="head-text">Create Income Transaction</h2>
+                      <a href="{% url 'balance:incm-transaction-create' %}">
+                          <button type="link" id="form-submit" class="btn top-spacing">Click Here</button>
+                      </a>
+                  </fieldset>
+                </div>
+            </div>
+            <div class="row top-margin" id="bottom">
+                <div class="col-md-4">
+                  <fieldset>
+                      <h2 id="head-text">Get Member's Due Months</h2>
+                      <a href="{% url 'balance:transaction-query-due' %}">
+                          <button type="link" id="form-submit" class="btn top-spacing">Click Here</button>
+                      </a>
+                  </fieldset>
+                </div>
+                 <div class="col-md-4">
+                  <fieldset>
+                      <h2 id="head-text">Activate Membership Request</h2>
+                      <a href="{% url 'member:activate' %}">
+                          <button type="link" id="form-submit" class="btn top-spacing">Click Here</button>
+                      </a>
+                  </fieldset>
+                </div>
+            </div>
+        {% endif %}
+        <div class="row top-margin" id="bottom">
+                <div class="col-md-4">
+                  <fieldset>
+                      <h2 id="head-text">Go to Notice Board</h2>
+                      <a href="{% url 'notice:notice-board' %}">
+                          <button type="link" id="form-submit" class="btn top-spacing">Click Here</button>
+                      </a>
+                  </fieldset>
+                </div>
+                <div class="col-md-4">
+                      <fieldset>
+                          <h2 id="head-text">Org. Overview</h2>
+                          <a href="{% url 'balance:organization' %}">
+                              <button type="link" id="form-submit" class="btn top-spacing">Click Here</button>
+                          </a>
+                      </fieldset>
+                 </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+{% endblock %}

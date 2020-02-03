@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% load grouptags %}
+
+{% block title %}Income Transaction Details{% endblock %}
+
+{% block content %}
+<div class="content first-content">
+  <div class="container-fluid">
+      <div class="col-md-12 bottom">
+          <h2>Income Transaction Details </h2>
+          <p><em>Transaction ID: </em>{{ transaction.income_guid }}</p>
+          <p><em>Received By: </em> {{ transaction.received_by}}</p>
+          <p><em>Receive Amount: </em> {{ transaction.amount}}</p>
+          <p><em>Receive Date: </em> {{ transaction.received_date}}</p>
+          <p><em>Receive Details: </em> {{ transaction.received_details }}</p>
+          <p><em>Income Created at: </em> {{ transaction.created_at}}</p>
+          <p><em>Income Updated at: </em> {{ transaction.updated_at}}</p>
+          {% if request.user|has_group:"Finance"%}
+          <div class="fb-btn"><a href="{% url 'balance:incm-transaction-edit' transaction.id %}">Edit</a></div>
+          <div class="fb-btn"><a href="{% url 'balance:incm-transaction-delete' transaction.id %}">Delete</a></div>
+          <div class="fb-btn"><a href="{% url 'balance:incm-transaction-create' %}">Create Another</a></div>
+          {% endif %}
+
+      </div>
+  </div>
+</div>{% endblock %}

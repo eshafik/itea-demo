@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}{{ user.name}}'s Profile{% endblock %}
+
+{% block content %}
+<div class="content first-content">
+  <div class="container-fluid">
+      <div class="col-md-3">
+          {% if user.profile.photo %}
+            <div class="author-image"><img src="{{ user.profile.photo.url}}" alt=""></div>
+          {% else %}
+            <div class="author-image"><img src="https://clipartart.com/images/default-profile-picture-clipart-3.jpg" alt=""></div>
+          {% endif %}
+      </div>
+      <div class="col-md-9">
+          <h2>{{ user.name }}</h2>
+          <p><em>{{ user.designation|default:"Not Found"}}</em></p>
+          <h2 id="text">Details Info:</h2>
+          <p><em>Mobile Number: </em> {{ user.profile.phone|default:"Not Found"}}</p>
+          <p><em>Email: </em> {{ user.profile.email|default:"Not Found" }}</p>
+          <p><em>Professional Details: </em> {{ user.profile.professional_details|default:"Not Found" }}</p>
+          <p><em>Present Address: </em> {{ user.profile.present_address|default:"Not Found" }}</p>
+          <p><em>Permanent Address: </em> {{ user.profile.permanent_address|default:"Not Found" }}</p>
+          {% if request.user.id == user.id %}
+          <div class="fb-btn"><a href="{% url 'members:basic-update' user.id %}">Edit Basic Info</a></div>
+          <div class="fb-btn"><a href="{% url 'member:profile-update' user.profile.id %}">Edit Details Info</a></div>
+          <br><br>
+          <div class="fb-btn orange" id="bottom"><a href="{% url 'password_change' %}" >Change Password</a></div>
+          {% endif %} 
+
+      </div>
+  </div>
+</div>{% endblock %}

@@ -1,0 +1,61 @@
+.form-group{
+    font-size: 20px;
+    color: white;
+}
+#text{
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+}
+#white-text{
+    color: white;
+    font-weight: bold;
+}
+#black-text{
+    color: black;
+    font-weight: bold;
+}
+#table-text{
+    color: #bbbbbb;
+    font-weight: bolder;
+}
+#head-text{
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}
+.login-button{
+   margin-top: 50%;
+    margin-bottom: 25px;
+}
+.profile-img{
+    width: 195px;
+    height: 195px;
+}
+.first-content .author-image img {
+    margin-top: 15px;
+    border-radius: 30px;
+    max-width: 195px;
+    overflow: hidden;
+    float: left;
+    margin-right: 35px;
+    max-height: 195px;
+}
+.orange{
+    background-color: orange;
+}
+.bottom{
+    margin-bottom: 100px;
+}
+#bottom{
+    margin-bottom: 70px;
+}
+.top-margin{
+    margin-top: 50px;
+}
+.top-spacing{
+    margin-top: 10px;
+}
+.center{
+    align-content: center;
+}

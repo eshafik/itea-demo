@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load grouptags %}
+
+
+{% block title %}Notice List{% endblock %}
+
+{% block content %}
+<div class="content fourth-content">
+    <div class="container-fluid">
+        <div class="col-md-12 bottom">
+            <div class="left-content">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> <h2 id="head-text">Notice Lists:</h2>
+                </div>
+                <div class="card-block">
+                    <table class="table table-bordered table-striped table-sm text-center">
+                        <thead>
+                        <tr>
+                            <th> <h3 class="text-center" id="text"> Date</h3> </th>
+                            <th> <h3 class="text-center" id="text"> Title</h3> </th>
+                            <th> <h3 class="text-center" id="text"> Publisher</h3> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for notice in notices %}
+                        <tr>
+                            <td><a href="#" class="test-success"><span class="btn text-dark" id="table-text">{{ notice.published_date }}</span></a></td>
+                            <td><a href="{% url 'notice:notice-details' notice.id %}" class="test-success"><span class="btn text-dark" id="table-text">{{ notice.notice_title }}</span></a></td>
+                            <td><a href="#" class="test-success"><span class="btn text-dark" id="table-text">{{ notice.author }}</span></a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                    {% include "pagination/pagination.html" with page=notices %}
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base/base_out.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Log Out{% endblock %}
+
+{% block content %}
+<div class="content second-content">
+    <div class="container-fluid">
+       <h2>You Have Successfully Logged Out!!</h2>
+        <br>
+        <h3><a href="{% url 'member:login' %}">Log-in Again</a></h3>
+    </div>
+</div>
+{% endblock %}

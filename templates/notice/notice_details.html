@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Notice Details{% endblock %}
+
+{% block content %}
+<div class="content first-content">
+  <div class="container-fluid">
+      <div class="col-md-12 bottom">
+          <h2>{{ notice.notice_title }}</h2>
+          <p>Published By- {{ notice.author.name }}, Published Date: {{ notice.published_date }}</p>
+          <p><em>{{ notice.notice_body }}</em></p>
+          {% if request.user.id == notice.author.id %}
+          <div class="fb-btn"><a href="{% url 'notice:notice-edit' notice.id %}">Edit</a></div>
+          <div class="fb-btn"><a href="{% url 'notice:notice-delete' notice.id %}">Delete</a></div>
+          {% endif %}
+
+      </div>
+  </div>
+</div>{% endblock %}

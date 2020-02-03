@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load grouptags %}
+
+
+{% block title %}Members List{% endblock %}
+
+{% block content %}
+<div class="content fourth-content">
+    <div class="container-fluid">
+        <div class="col-md-12 bottom">
+            <div class="left-content">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> <h2 id="head-text">Member Lists:</h2>
+                </div>
+                <div class="card-block">
+                    <table class="table table-bordered table-striped table-sm text-center">
+                        <thead>
+                        <tr>
+                            <th> <h3 class="text-center" id="text"> Name</h3> </th>
+                            <th> <h3 class="text-center" id="text"> Profile Link</h3> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td><a href="#" class="test-success"><span class="btn text-dark" id="table-text">{{ user.name }}</span></a></td>
+                            <td><a href="{% url 'member:member-details' user.id %}" class="test-success"><span class="btn text-dark" id="table-text">Show Profile</span></a></td>
+                            {% if request.user|has_group:"finance" %}
+                            <td><a href="#" class="test-success"><span class="btn text-dark" id="table-text">Click Here</span></a></td>
+                            {% endif %}
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                    {% include "pagination/pagination.html" with page=users %}
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
